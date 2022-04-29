@@ -23,7 +23,6 @@ export default async function handler(req, res) {
       const token = jwt.create({
         name,
         email,
-        role: 'user',
       })
 
       await prisma.user.create({

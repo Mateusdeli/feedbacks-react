@@ -3,6 +3,7 @@ import { createContext, useReducer } from 'react'
 const INITIAL_VALUE = {
   name: '',
   email: '',
+  token: '',
   logged: false,
 }
 

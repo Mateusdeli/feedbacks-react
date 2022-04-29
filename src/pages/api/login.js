@@ -1,5 +1,6 @@
 import prisma from '../../config/prisma'
 import * as encrypt from '../../utils/encrypt'
+import * as jwt from '../../utils/jwt'
 
 export default async function handler(req, res) {
   const { email, password } = req.body
@@ -29,12 +30,18 @@ export default async function handler(req, res) {
     return sendMessageCredentialsInvalid(res)
   }
 
+  const token = jwt.create({
+    name: user.name,
+    email: user.email
+  })
+
   return res.status(200).send({
     data: {
       user: {
         name: user.name,
         email: user.email,
       },
+      token,
     },
     message: 'Login realizado com sucesso!',
     error: false,

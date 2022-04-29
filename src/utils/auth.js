@@ -5,8 +5,7 @@ async function login(data) {
 
   if (email && password) {
     try {
-      const data = await http.post('/login', { email, password })
-      return data
+      return await http.post('/login', { email, password })
     } catch (err) {
       return Promise.reject(err)
     }
@@ -17,8 +16,7 @@ async function register(data) {
   const { name, email, password } = data
   if (name && email && password) {
     try {
-      const data = await http.post('/register', { name, email, password })
-      return data
+      return await http.post('/register', { name, email, password })
     } catch (err) {
       return Promise.reject(err)
     }
@@ -28,4 +26,16 @@ async function register(data) {
   })
 }
 
-export { login, register }
+async function loadSession(data) {
+  const { token } = data
+  if (token) {
+    try {
+      const response = await http.post('/loadSession', { token })
+      return response
+    } catch (err) {
+      return Promise.reject(err)
+    }
+  }
+}
+
+export { login, register, loadSession }

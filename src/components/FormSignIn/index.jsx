@@ -23,9 +23,7 @@ export default function FormSignIn({ Close }) {
     
     const response = await login({ email, password })
 
-    console.log(response);
-
-    if (response) {
+    if (!response.error) {
       await router.push(routes.feedbacks)
     }
   }

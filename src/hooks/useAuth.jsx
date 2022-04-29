@@ -13,7 +13,10 @@ export default function useAuth() {
       setUserLogged({
         name: response.data?.user.name,
         email: response.data?.user.email,
+        token: response.data?.token,
       })
+
+      localStorage.setItem('token', response.data.token)
     }
 
     return response
@@ -32,18 +35,38 @@ export default function useAuth() {
       setUserLogged({
         name,
         email,
+        token: response.data?.token,
       })
+
+      localStorage.setItem('token', response.data.token)
     }
 
-    localStorage.setItem('token', response.data.token)
-
     return response
+  }
+
+  async function loadSession() {
+    const token = localStorage.getItem('token')
+
+    if (token) {
+      const { data } = await auth.loadSession({ token })
+      if (data) {
+        setUserLogged({
+          name: data?.name,
+          email: data?.email,
+          token,
+        })
+        return Promise.resolve(true)
+      }
+    }
+    logout()
+    return Promise.reject(false)
   }
 
   function logout() {
     setData({
       logged: false,
     })
+    localStorage.clear('token')
     return true
   }
 
@@ -58,5 +81,6 @@ export default function useAuth() {
     login,
     register,
     logout,
+    loadSession,
   }
 }
