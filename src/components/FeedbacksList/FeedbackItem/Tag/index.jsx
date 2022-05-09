@@ -1,9 +1,9 @@
 import React from 'react'
 import * as S from './styles'
 
-export default function Tag({ children }) {
+export default function Tag({ bgColor, children }) {
   return (
-    <S.Container color="white">
+    <S.Container bgColor={bgColor} color="white">
        {children}
     </S.Container>
   )

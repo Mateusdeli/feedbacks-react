@@ -7,13 +7,14 @@ export default function Button({
   color,
   background = 'transparent',
   size = '18px',
+  width,
   children,
   ...props
 }) {
   if (path) {
     return (
       <Link href={path} passHref>
-        <S.Wrapper color={color} size={size} background={background} {...props}>
+        <S.Wrapper width={width} color={color} size={size} background={background} {...props}>
           {children}
         </S.Wrapper>
       </Link>
@@ -21,7 +22,7 @@ export default function Button({
   }
 
   return (
-    <S.Wrapper as="button" size={size} color={color} background={background} {...props}>
+    <S.Wrapper as="button" width={width} size={size} color={color} background={background} {...props}>
       {children}
     </S.Wrapper>
   )

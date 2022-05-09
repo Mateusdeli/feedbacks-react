@@ -39,8 +39,8 @@ export default function Header() {
           {isLogged() ? (
             <C.NavList>
               <C.NavItem>
-                <Button path={routes.credentials} color="white">
-                  Credenciais
+                <Button path={routes.deSeuFeedback} color="white">
+                  Dê seu Feedback!
                 </Button>
                 <Button path={routes.feedbacks} color="white">
                   Feedbacks

@@ -31,13 +31,15 @@ export default async function handler(req, res) {
   }
 
   const token = jwt.create({
+    id: user.id,
     name: user.name,
-    email: user.email
+    email: user.email,
   })
 
   return res.status(200).send({
     data: {
       user: {
+        id: user.id,
         name: user.name,
         email: user.email,
       },

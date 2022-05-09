@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import { createGlobalStyle, ThemeProvider } from 'styled-components'
+import { FeedbackProvider } from '../contexts/feedback'
 import { UserProvider } from '../contexts/user'
 import theme from '../theme'
 
@@ -28,7 +29,9 @@ export default function App({ Component, pageProps }) {
       <GlobalStyle />
       <ThemeProvider theme={theme}>
         <UserProvider>
-          <Component {...pageProps} />
+          <FeedbackProvider>
+            <Component {...pageProps} />
+          </FeedbackProvider>
         </UserProvider>
       </ThemeProvider>
     </>

@@ -12,9 +12,25 @@ async function post(url, body) {
       mode: 'cors',
     })
     return await response.json()
-  } catch (err) {
-    return Promise.reject(err)
+  } catch (error) {
+    return Promise.reject(error)
   }
 }
 
-export { post }
+async function get(url) {
+  try {
+    const response = await fetch(baseUrl + url, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      mode: 'cors',
+    })
+    return await response.json()
+  } catch (error) {
+    return Promise.reject(error)
+  }
+}
+
+export { get, post }

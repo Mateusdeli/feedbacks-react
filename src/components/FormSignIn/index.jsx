@@ -20,10 +20,10 @@ export default function FormSignIn({ Close }) {
 
   async function handleSubmit(event) {
     event.preventDefault()
-    
+
     const response = await login({ email, password })
 
-    if (!response.error) {
+    if (!response?.error) {
       await router.push(routes.feedbacks)
     }
   }
@@ -41,24 +41,20 @@ export default function FormSignIn({ Close }) {
             </S.IconContainer>
           </S.Header>
           <form onSubmit={handleSubmit}>
-            <S.TextFieldContainer>
-              <TextField
-                type="email"
-                label="E-mail"
-                name="email"
-                onInputChange={setEmail}
-                value={email}
-              />
-            </S.TextFieldContainer>
-            <S.TextFieldContainer>
-              <TextField
-                type="password"
-                label="Senha"
-                name="password"
-                onInputChange={setPassword}
-                value={password}
-              />
-            </S.TextFieldContainer>
+            <TextField
+              type="email"
+              label="E-mail"
+              name="email"
+              onInputChange={setEmail}
+              value={email}
+            />
+            <TextField
+              type="password"
+              label="Senha"
+              name="password"
+              onInputChange={setPassword}
+              value={password}
+            />
             <Button background="primary" color="white">
               Entrar
             </Button>

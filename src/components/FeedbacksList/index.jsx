@@ -1,40 +1,22 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import * as S from './styles'
 import FeedbackItem from './FeedbackItem'
+import useFeedbackContext from '../../hooks/useFeedbackContext'
 
 export default function FeedbacksList() {
+  const { feedbackType, getFeedbacksByType } = useFeedbackContext()
+  const [feedbacks, setFeedbacks] = useState([])
+
+  useEffect(() => {
+    const result = getFeedbacksByType(feedbackType)
+    setFeedbacks(result)
+  }, [feedbackType])
+
   return (
     <S.FeedbacksContainer>
-      <FeedbackItem
-        tag="problema"
-        time="20 segundos atrás"
-        text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-    ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-    ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in repre
-    henderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-    occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-    est laborum."
-      />
-      <FeedbackItem
-        tag="problema"
-        time="20 segundos atrás"
-        text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-    ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-    ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in repre
-    henderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-    occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-    est laborum."
-      />
-      <FeedbackItem
-        tag="problema"
-        time="20 segundos atrás"
-        text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-    ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-    ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in repre
-    henderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-    occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-    est laborum."
-      />
+      {feedbacks?.map((feedback, index) => (
+        <FeedbackItem key={index} feedback={feedback} />
+      ))}
     </S.FeedbacksContainer>
   )
 }

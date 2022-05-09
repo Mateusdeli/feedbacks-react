@@ -1,11 +1,11 @@
 import styled, { css } from 'styled-components'
 
 export const Wrapper = styled.a`
-  ${({ theme, background, color, size }) => css`
+  ${({ theme, background, color, size, width }) => css`
     background: ${theme.colors[background] ?? background};
     color: ${theme.colors[color]};
 
-    padding: .5rem 1rem;
+    padding: 0.5rem 1rem;
 
     border: 0;
     border-radius: ${theme.border.radius};
@@ -18,5 +18,12 @@ export const Wrapper = styled.a`
     font-size: ${size};
 
     text-decoration: none;
+
+    ${!!width &&
+    css`
+      max-width: ${width}px;
+      min-width: ${width}px;
+      width: 100%;
+    `}
   `}
 `

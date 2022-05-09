@@ -4,9 +4,9 @@ import * as S from './styles'
 
 export default function FilterItem({ loading, active, text, amount, color, onSelect }) {
 
-  if (loading) {
-    return <Skeleton width={238} height={28} />
-  }
+  // if (loading) {
+  //   return <Skeleton width={238} height={28} />
+  // }
 
   return (
     <S.Container onClick={onSelect} active={active}>

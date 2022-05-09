@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
 
-export const InputWrapper = styled.div`
+export const TextAreaWrapper = styled.div`
   ${({ theme }) => css`
     display: flex;
     align-items: center;
@@ -8,8 +8,8 @@ export const InputWrapper = styled.div`
   `}
 `
 
-export const Input = styled.input`
-  ${({ theme, iconPosition }) => css`
+export const TextArea = styled.textarea`
+  ${({ theme, iconPosition, height }) => css`
     color: ${theme.colors.gray};
     font-weight: 500;
     font-size: 20px;
@@ -20,6 +20,8 @@ export const Input = styled.input`
     border: 0;
     outline: none;
     width: ${iconPosition === 'right' ? `calc(100% - 2.2rem)` : `100%`};
+    min-height: ${height ? `${height}px` : '100%'};
+    resize: none;
   `}
 `
 
@@ -56,10 +58,10 @@ export const Error = styled.p`
 
 const wrapperModifiers = {
   error: (theme) => css`
-    ${InputWrapper} {
+    ${TextArea} {
       border: 4px solid ${theme.colors.red};
     },
-    ${Input} {
+    ${TextArea} {
       color: ${theme.colors.red};
     },
     ${Icon},

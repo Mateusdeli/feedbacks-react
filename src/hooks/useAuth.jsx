@@ -9,8 +9,9 @@ export default function useAuth() {
 
     const response = await auth.login({ email, password })
 
-    if (!response.error) {
+    if (!response?.error) {
       setUserLogged({
+        id: response.data?.user.id,
         name: response.data?.user.name,
         email: response.data?.user.email,
         token: response.data?.token,
@@ -33,6 +34,7 @@ export default function useAuth() {
 
     if (!response.error) {
       setUserLogged({
+        id: response.data?.id,
         name,
         email,
         token: response.data?.token,
@@ -51,6 +53,7 @@ export default function useAuth() {
       const { data } = await auth.loadSession({ token })
       if (data) {
         setUserLogged({
+          id: data?.id,
           name: data?.name,
           email: data?.email,
           token,

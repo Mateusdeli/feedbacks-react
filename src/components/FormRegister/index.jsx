@@ -37,7 +37,7 @@ export default function FormRegister({ Close }) {
 
     const response = await register({ name, email, password })
 
-    if (!response.error) {
+    if (!response?.error) {
       await router.push(routes.feedbacks)
     }
   }
@@ -55,36 +55,30 @@ export default function FormRegister({ Close }) {
             </S.IconContainer>
           </S.Header>
           <form onSubmit={handleSubmit}>
-            <S.TextFieldContainer>
-              <TextField
-                type="text"
-                label="Nome"
-                name="name"
-                value={name}
-                onInputChange={setName}
-              />
-            </S.TextFieldContainer>
-            <S.TextFieldContainer>
-              <TextField
-                type="email"
-                label="E-mail"
-                name="email"
-                value={email}
-                onInputChange={setEmail}
-                error={errors.email && errors.email.message}
-              />
-            </S.TextFieldContainer>
-            <S.TextFieldContainer>
-              <TextField
-                type="password"
-                label="Senha"
-                name="password"
-                value={password}
-                onInputChange={setPassword}
-                error="* O campo é obrigatório"
-                error={errors.password && errors.password.message}
-              />
-            </S.TextFieldContainer>
+            <TextField
+              type="text"
+              label="Nome"
+              name="name"
+              value={name}
+              onInputChange={setName}
+            />
+            <TextField
+              type="email"
+              label="E-mail"
+              name="email"
+              value={email}
+              onInputChange={setEmail}
+              error={errors.email && errors.email.message}
+            />
+            <TextField
+              type="password"
+              label="Senha"
+              name="password"
+              value={password}
+              onInputChange={setPassword}
+              error="* O campo é obrigatório"
+              error={errors.password && errors.password.message}
+            />
             <Button
               type="submit"
               size="20px"

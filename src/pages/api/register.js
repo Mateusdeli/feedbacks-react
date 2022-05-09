@@ -20,12 +20,7 @@ export default async function handler(req, res) {
         })
       }
 
-      const token = jwt.create({
-        name,
-        email,
-      })
-
-      await prisma.user.create({
+      const userCreated = await prisma.user.create({
         data: {
           name,
           email,
@@ -33,6 +28,12 @@ export default async function handler(req, res) {
           location: getLocationInfo(req),
           device: getDeviceInfo(req),
         },
+      })
+
+      const token = jwt.create({
+        id: userCreated.id,
+        name,
+        email,
       })
 
       return res.status(201).send({

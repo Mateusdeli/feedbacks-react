@@ -1,3 +1,4 @@
+import apiRoutes from '../constants/api-routes'
 import * as http from './http'
 
 async function login(data) {
@@ -5,7 +6,7 @@ async function login(data) {
 
   if (email && password) {
     try {
-      return await http.post('/login', { email, password })
+      return await http.post(apiRoutes.login, { email, password })
     } catch (err) {
       return Promise.reject(err)
     }
@@ -16,7 +17,7 @@ async function register(data) {
   const { name, email, password } = data
   if (name && email && password) {
     try {
-      return await http.post('/register', { name, email, password })
+      return await http.post(apiRoutes.register, { name, email, password })
     } catch (err) {
       return Promise.reject(err)
     }
@@ -30,7 +31,7 @@ async function loadSession(data) {
   const { token } = data
   if (token) {
     try {
-      const response = await http.post('/loadSession', { token })
+      const response = await http.post(apiRoutes.loadSession, { token })
       return response
     } catch (err) {
       return Promise.reject(err)
